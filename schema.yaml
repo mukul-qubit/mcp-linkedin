@@ -1,0 +1,29 @@
+# Smithery configuration file: https://smithery.ai/docs/config#smitheryyaml
+
+startCommand:
+  type: stdio
+  configSchema:
+    # JSON Schema defining the configuration options for the MCP.
+    type: object
+    required:
+      - linkedinApiKey
+      - linkedinApiHost
+      - linkedinApiUser
+    properties:
+      linkedinApiKey:
+        type: string
+        description: LinkedIn API Key
+      linkedinApiHost:
+        type: string
+        description: LinkedIn API Host
+      linkedinApiUser:
+        type: string
+        description: LinkedIn API User
+  commandFunction:
+    # A JS function that produces the CLI command based on the given config to start the MCP on stdio.
+    |-
+    (config) => ({command:'python', args:['linkedin_api_tools.py'], env:{LINKEDIN_API_KEY:config.linkedinApiKey,LINKEDIN_API_HOST:config.linkedinApiHost,LINKEDIN_API_USER:config.linkedinApiUser}})
+  exampleConfig:
+    linkedinApiKey: YOUR_API_KEY
+    linkedinApiHost: api.linkedin.com
+    linkedinApiUser: user123
