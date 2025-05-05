@@ -19,9 +19,13 @@ logger = logging.getLogger('linkedin_api_tools')
 mcp = FastMCP("LinkedInProfiler")
 
 # Get LinkedIn API credentials from environment variables
-LINKEDIN_API_KEY = os.environ.get("LINKEDIN_API_KEY", "")
-LINKEDIN_API_HOST = os.environ.get("LINKEDIN_API_HOST", "")
-LINKEDIN_API_USER = os.environ.get("LINKEDIN_API_USER", "")
+# LINKEDIN_API_KEY = os.environ.get("LINKEDIN_API_KEY", "")
+# LINKEDIN_API_HOST = os.environ.get("LINKEDIN_API_HOST", "")
+# LINKEDIN_API_USER = os.environ.get("LINKEDIN_API_USER", "")
+
+LINKEDIN_API_KEY = "xxxx"
+LINKEDIN_API_HOST = "linkedin-bulk-data-scraper.p.rapidapi.com"
+LINKEDIN_API_USER = "usama"
 
 # Helper function for making API requests with error handling
 def make_api_request(method: str, endpoint: str, payload: Optional[str] = None, headers: Dict = None) -> Dict[str, Any]:
