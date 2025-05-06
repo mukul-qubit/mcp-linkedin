@@ -8,7 +8,8 @@ RUN pip install --no-cache-dir -e .
 
 COPY . .
 
-ENV PORT=8000
+# For Azure, App Service provides PORT env; expose default 8080
+EXPOSE 8080
 
 # Use MCP CLI with SSE transport instead of uvicorn
-CMD ["mcp", "serve", "linkedin_api_tools:mcp", "--transport", "sse", "--host", "0.0.0.0", "--port", "8000"]
+CMD ["sh", "-c", "mcp serve linkedin_api_tools:mcp --transport sse --host 0.0.0.0 --port ${PORT:-8080}"]
