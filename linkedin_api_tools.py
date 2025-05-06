@@ -1227,6 +1227,7 @@ def person_data_with_educations(link: str) -> Dict:
     return json.loads(data.decode("utf-8"))
 
 if __name__ == "__main__":
-    # Run the MCP server directly via SSE transport so no FastAPI wrapper is required
+    # Launch the MCP app with uvicorn explicitly on the port Azure provides
+    import uvicorn, os
     port = int(os.environ.get("PORT", 80))
-    mcp.run(transport="sse")
+    uvicorn.run(mcp.app, host="0.0.0.0", port=port)
