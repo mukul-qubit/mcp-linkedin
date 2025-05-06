@@ -22,15 +22,15 @@ jobs:
     - name: Log in to registry
       uses: docker/login-action@v2
       with:
-        registry: https://mcr.microsoft.com/
-        username: ${{ secrets.AzureAppService_ContainerUsername_7c71c761365c41deb6df4db04d3ad310 }}
-        password: ${{ secrets.AzureAppService_ContainerPassword_7b2257176bc045f6861a219ea5a67cfc }}
+        registry: https://mukulmcpregistry.azurecr.io/
+        username: ${{ secrets.AzureAppService_ContainerUsername_60c41a79dec1493ea6a0204da3b7bba2 }}
+        password: ${{ secrets.AzureAppService_ContainerPassword_bdcd68064fa5403980f7780daf860a07 }}
 
     - name: Build and push container image to registry
       uses: docker/build-push-action@v3
       with:
         push: true
-        tags: mcr.microsoft.com/${{ secrets.AzureAppService_ContainerUsername_7c71c761365c41deb6df4db04d3ad310 }}/appsvc/staticsite:${{ github.sha }}
+        tags: mukulmcpregistry.azurecr.io/${{ secrets.AzureAppService_ContainerUsername_60c41a79dec1493ea6a0204da3b7bba2 }}/mcp-linkedin:${{ github.sha }}
         file: ./Dockerfile
 
   deploy:
@@ -47,5 +47,5 @@ jobs:
       with:
         app-name: 'mcp-container'
         slot-name: 'production'
-        publish-profile: ${{ secrets.AzureAppService_PublishProfile_b3debb5684d44f218a924d3bb61f3188 }}
-        images: 'mcr.microsoft.com/${{ secrets.AzureAppService_ContainerUsername_7c71c761365c41deb6df4db04d3ad310 }}/appsvc/staticsite:${{ github.sha }}'
+        publish-profile: ${{ secrets.AzureAppService_PublishProfile_5b5b9b03539c42a7b77959989c9c9dd5 }}
+        images: 'mukulmcpregistry.azurecr.io/${{ secrets.AzureAppService_ContainerUsername_60c41a79dec1493ea6a0204da3b7bba2 }}/mcp-linkedin:${{ github.sha }}'
