@@ -1,4 +1,4 @@
-from mcp.server.fastmcp import FastMCP
+from fastmcp import FastMCP
 from typing import List, Dict, Optional, Any, Union
 import http.client
 import json
@@ -1227,12 +1227,4 @@ def person_data_with_educations(link: str) -> Dict:
     return json.loads(data.decode("utf-8"))
 
 if __name__ == "__main__":
-    import uvicorn
-
-    # Run the MCP server via Uvicorn so we can specify host/port for Azure
-    uvicorn.run(
-        mcp.get_app(),
-        host="0.0.0.0",
-        port=int(os.getenv("PORT", 80)),
-        log_level="info",
-    )
+    mcp.run(transport="sse", host="0.0.0.0", port=80)
