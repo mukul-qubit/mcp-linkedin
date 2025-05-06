@@ -1227,4 +1227,6 @@ def person_data_with_educations(link: str) -> Dict:
     return json.loads(data.decode("utf-8"))
 
 if __name__ == "__main__":
-    mcp.run()
+    # Run the MCP server directly via SSE transport so no FastAPI wrapper is required
+    port = int(os.environ.get("PORT", 80))
+    mcp.run(transport="sse", host="0.0.0.0", port=port)
