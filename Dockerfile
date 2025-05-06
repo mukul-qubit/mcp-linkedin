@@ -12,4 +12,4 @@ COPY . .
 EXPOSE 80
 
 # Use MCP CLI with SSE transport instead of uvicorn
-CMD ["sh", "-c", "mcp serve linkedin_api_tools:mcp --transport sse --host 0.0.0.0 --port 80"]
+CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "80"]
