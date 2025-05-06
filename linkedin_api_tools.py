@@ -1229,4 +1229,4 @@ def person_data_with_educations(link: str) -> Dict:
 if __name__ == "__main__":
     # Run the MCP server directly via SSE transport so no FastAPI wrapper is required
     port = int(os.environ.get("PORT", 80))
-    mcp.run(transport="sse", port=port)
+    mcp.run(transport="sse")
