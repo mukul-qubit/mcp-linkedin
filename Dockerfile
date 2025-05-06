@@ -12,4 +12,7 @@ COPY . .
 EXPOSE 80
 
 # Use MCP CLI with SSE transport instead of uvicorn
-CMD ["python", "-m", "linkedin_api_tools"]
+CMD ["fastmcp", "run", "linkedin_api_tools.py",
+     "--transport", "sse",
+     "--host", "0.0.0.0",
+     "--port", "80"]
