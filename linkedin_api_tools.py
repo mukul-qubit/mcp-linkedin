@@ -1228,6 +1228,4 @@ def person_data_with_educations(link: str) -> Dict:
 
 if __name__ == "__main__":
     # Launch the MCP app with uvicorn explicitly on the port Azure provides
-    import uvicorn, os
-    port = int(os.environ.get("PORT", 80))
-    uvicorn.run(mcp.app, host="0.0.0.0", port=port)
+    mcp.run()
