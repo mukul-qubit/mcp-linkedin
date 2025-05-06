@@ -1227,5 +1227,8 @@ def person_data_with_educations(link: str) -> Dict:
     return json.loads(data.decode("utf-8"))
 
 if __name__ == "__main__":
-    # Launch the MCP app with uvicorn explicitly on the port Azure provides
-    mcp.run()
+    mcp.run(
+        transport="sse",        # make it an HTTP SSE server
+        host="0.0.0.0",         # listen on all interfaces
+        port=int(os.getenv("PORT", 80))  # Azure injects PORT, default to 80
+    )
