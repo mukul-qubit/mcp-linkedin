@@ -26,13 +26,6 @@ LINKEDIN_API_KEY = os.environ.get("LINKEDIN_API_KEY", "xxxx")
 # LINKEDIN_API_KEY = "xxxx"
 LINKEDIN_API_HOST = "linkedin-bulk-data-scraper.p.rapidapi.com"
 LINKEDIN_API_USER = "usama"
-@mcp.method()
-async def initialize(params: dict) -> dict:        # params contains protocolVersion, capabilities, …
-    """
-    Claude sends an 'initialize' request first.
-    Return an *empty dict* or any default capabilities you support.
-    """
-    return {}
 
 
 # Helper function for making API requests with error handling
