@@ -28,7 +28,7 @@ LINKEDIN_API_HOST = "linkedin-bulk-data-scraper.p.rapidapi.com"
 LINKEDIN_API_USER = "usama"
 
 @mcp.method()
-async async def initialize(params: dict) -> dict:        # params contains protocolVersion, capabilities, …
+async def initialize(params: dict) -> dict:        # params contains protocolVersion, capabilities, …
     """
     Claude sends an 'initialize' request first.
     Return an *empty dict* or any default capabilities you support.
