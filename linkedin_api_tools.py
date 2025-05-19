@@ -29,7 +29,7 @@ LINKEDIN_API_USER = "usama"
 
 
 # Helper function for making API requests with error handling
-async def make_api_request(method: str, endpoint: str, payload: Optional[str] = None, headers: Dict = None) -> Dict[str, Any]:
+def make_api_request(method: str, endpoint: str, payload: Optional[str] = None, headers: Dict = None) -> Dict[str, Any]:
     """
     Makes an API request with error handling.
     
