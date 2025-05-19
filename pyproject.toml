@@ -1,11 +1,10 @@
 [project]
 name = "first-mcp-server"
 version = "0.1.0"
-description = "Add your description here"
-readme = "README.md"
 requires-python = ">=3.12.3"
+
 dependencies = [
-    "mcp[cli]>=1.6.0",
+    "fastmcp>=2.3.4",     # ← real server library (gives you FastMCP.method)
+    "mcp[cli]>=1.6.0",    # optional — only if you want the CLI in the same env
     "requests>=2.31.0",
-    "smithery>=0.1.3",
 ]
