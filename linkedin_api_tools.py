@@ -1227,4 +1227,4 @@ def person_data_with_educations(link: str) -> Dict:
     return json.loads(data.decode("utf-8"))
 
 if __name__ == "__main__":
-    mcp.run(transport="sse", host="0.0.0.0", port=80)
+    mcp.run(transport="streamable-http", host="0.0.0.0", port=80, path="/linkedin")
