@@ -1,5 +1,5 @@
 from fastmcp import FastMCP
-from typing import List, Dict, Optional, Any, Union
+from typing import List, Dict, Optional, Any
 import http.client
 import json
 import os
@@ -7,6 +7,7 @@ import urllib.parse
 import logging
 import traceback
 import time
+from fastapi import FastAPI
 
 # Configure logging
 logging.basicConfig(
@@ -17,6 +18,15 @@ logger = logging.getLogger('linkedin_api_tools')
 
 # Create MCP server
 mcp = FastMCP("LinkedInProfiler")
+
+mcp_app = mcp.http_app(path="/linkedin")
+
+app = FastAPI(lifespan=mcp_app.lifespan)   # <-- critical!
+app.mount("/linkedin", mcp_app)
+
+@app.get("/")
+async def alive():
+    return {"status": "ok"}
 
 # Get LinkedIn API credentials from environment variables
 LINKEDIN_API_KEY = os.environ.get("LINKEDIN_API_KEY", "xxxx")
@@ -1227,5 +1237,12 @@ def person_data_with_educations(link: str) -> Dict:
     data = response.read()
     return json.loads(data.decode("utf-8"))
 
+# if __name__ == "__main__":
+#     mcp.run(transport="streamable-http", host="0.0.0.0", port=80, path="/linkedin", log_level="info",)
+
+
 if __name__ == "__main__":
-    mcp.run(transport="streamable-http", host="0.0.0.0", port=80, path="/linkedin", log_level="info",)
+    import uvicorn
+    uvicorn.run(app,
+                host="0.0.0.0",
+                port=int(os.getenv("PORT", 80)))
