@@ -21,7 +21,7 @@ logger = logging.getLogger('linkedin_api_tools')
 # Create MCP server
 mcp = FastMCP("LinkedInProfiler")
 
-mcp_app = mcp.http_app(path="/linkedin")
+app = mcp.http_app(path="/linkedin")
 
 # Get LinkedIn API credentials from environment variables
 LINKEDIN_API_KEY = os.environ.get("LINKEDIN_API_KEY", "xxxx")
