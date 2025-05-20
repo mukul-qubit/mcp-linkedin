@@ -168,7 +168,7 @@ LINKEDIN_HEADERS = {
 
 # Tool: Get Profiles
 @mcp.tool()
-async def profiles(links: List[str]) -> Dict:
+def profiles(links: List[str]) -> Dict:
     """Can scrape up to 100 profiles data in a go
     
     Request Body Example:
@@ -188,7 +188,7 @@ async def profiles(links: List[str]) -> Dict:
 
 # Tool: Get Companies
 @mcp.tool()
-async def companies(links: List[str]) -> Dict:
+def companies(links: List[str]) -> Dict:
     """Can scrape up to 100 companies data in a go
     
     Request Body Example:
@@ -209,7 +209,7 @@ async def companies(links: List[str]) -> Dict:
 
 # Tool: Get Company Posts
 @mcp.tool()
-async def company_posts(links: List[str], count: int = 1) -> Dict:
+def company_posts(links: List[str], count: int = 1) -> Dict:
     """Can scrape 100 posts of 50 linkedin companies
     
     Request Body Example:
@@ -230,7 +230,7 @@ async def company_posts(links: List[str], count: int = 1) -> Dict:
 
 # Tool: Get Person Data
 @mcp.tool()
-async def person(link: str) -> Dict:
+def person(link: str) -> Dict:
     """Scrapes all data of a person from linkedin
     
     Request Body Example:
@@ -247,7 +247,7 @@ async def person(link: str) -> Dict:
 
 # Tool: Get Person Data Using URN
 @mcp.tool()
-async def person_urn(link: str) -> Dict:
+def person_urn(link: str) -> Dict:
     """Scrapes all data from a person's page using his profile URN
     
     NOTE: This tool failed during testing (status 400, error: Failed to scrape profile).
@@ -267,7 +267,7 @@ async def person_urn(link: str) -> Dict:
 
 # Tool: Get Person Skills
 @mcp.tool()
-async def person_skills(link: str) -> Dict:
+def person_skills(link: str) -> Dict:
     """Scrapes all skills of a linkedin user
     
     Request Body Example:
@@ -284,7 +284,7 @@ async def person_skills(link: str) -> Dict:
 
 # Tool: Search People With Filters
 @mcp.tool()
-async def search_people_with_filters(keyword: str, page: int = 1, title_free_text: str = None, 
+def search_people_with_filters(keyword: str, page: int = 1, title_free_text: str = None, 
                             company_free_text: str = None, first_name: str = None, 
                             last_name: str = None) -> Dict:
     """Search for people from linkedin using all filters as per linkedin
@@ -318,7 +318,7 @@ async def search_people_with_filters(keyword: str, page: int = 1, title_free_tex
 
 # Tool: Get Company Data
 @mcp.tool()
-async def company(link: str) -> Dict:
+def company(link: str) -> Dict:
     """Scrapes all data from a provided company url
     
     Request Body Example:
@@ -335,7 +335,7 @@ async def company(link: str) -> Dict:
 
 # Tool: Get Company Jobs
 @mcp.tool()
-async def company_jobs(company_url: str, starts_from: int = 0, count: int = 10) -> Dict:
+def company_jobs(company_url: str, starts_from: int = 0, count: int = 10) -> Dict:
     """Scrapes jobs of a specific linkedin company
     
     Request Body Example:
@@ -358,7 +358,7 @@ async def company_jobs(company_url: str, starts_from: int = 0, count: int = 10) 
 
 # Tool: Search Companies With Filters
 @mcp.tool()
-async def search_company_with_filters(keyword: str, page: int = 1, company_size_list: str = None, 
+def search_company_with_filters(keyword: str, page: int = 1, company_size_list: str = None, 
                              hasJobs: bool = False, location_list: str = None, 
                              industry_list: str = None) -> Dict:
     """Search for companies as per linkedin search engine
@@ -394,7 +394,7 @@ async def search_company_with_filters(keyword: str, page: int = 1, company_size_
 
 # Tool: Get Post Data
 @mcp.tool()
-async def post(link: str) -> Dict:
+def post(link: str) -> Dict:
     """Scrapes post data by a person/company using its linkedin url
     
     Request Body Example:
@@ -411,7 +411,7 @@ async def post(link: str) -> Dict:
 
 # Tool: Search Posts
 @mcp.tool()
-async def search_posts(query: str, page: int = 1, filters: List[Dict] = None) -> Dict:
+def search_posts(query: str, page: int = 1, filters: List[Dict] = None) -> Dict:
     """Search posts as per linkedin.com search engine (with filters)
     
     Request Body Example:
@@ -442,7 +442,7 @@ async def search_posts(query: str, page: int = 1, filters: List[Dict] = None) ->
 
 # Tool: Person Updates
 @mcp.tool()
-async def profile_updates(profile_url: str, page: int = 1, paginationToken: str = None) -> Dict:
+def profile_updates(profile_url: str, page: int = 1, paginationToken: str = None) -> Dict:
     """Scrapes updates posted by a linkedin user
 
     NOTE: API doc specifies profile_url and page as required GET parameters.
@@ -467,7 +467,7 @@ async def profile_updates(profile_url: str, page: int = 1, paginationToken: str 
 
 # Tool: Person comments from recent activity
 @mcp.tool()
-async def comments_from_recent_activity(profile_url: str, page: int = 1, paginationToken: str = None) -> Dict:
+def comments_from_recent_activity(profile_url: str, page: int = 1, paginationToken: str = None) -> Dict:
     """Scrapes comments posted by a person as per his recent activity
 
     NOTE: API doc specifies profile_url and page as required GET parameters.
@@ -492,7 +492,7 @@ async def comments_from_recent_activity(profile_url: str, page: int = 1, paginat
 
 # Tool: Company Updates
 @mcp.tool()
-async def company_updates(company_url: str, page: str = "1", paginationToken: str = None) -> Dict:
+def company_updates(company_url: str, page: str = "1", paginationToken: str = None) -> Dict:
     """Scrapes updates of a given company
 
     NOTE: API doc specifies company_url and page as required GET parameters.
@@ -517,7 +517,7 @@ async def company_updates(company_url: str, page: str = "1", paginationToken: st
 
 # Tool: Company Employee Count
 @mcp.tool()
-async def company_employee_count_per_skill(keyword: str, company_url: str) -> Dict:
+def company_employee_count_per_skill(keyword: str, company_url: str) -> Dict:
     """Get employee count with specific skill at a company
 
     NOTE: API doc example uses camelCase 'companyUrl' in the request body.
@@ -540,7 +540,7 @@ async def company_employee_count_per_skill(keyword: str, company_url: str) -> Di
 
 # Tool: School Alumni Count
 @mcp.tool()
-async def school_alumini_count_per_skill(keyword: str, schoolUrl: str, skillExplicits: str = None) -> Dict:
+def school_alumini_count_per_skill(keyword: str, schoolUrl: str, skillExplicits: str = None) -> Dict:
     """Returns alumni count of a school/university
     NOTE: API doc example uses camelCase 'schoolUrl' in the request body.
     NOTE: This tool failed during testing with 400 Bad Request.
@@ -568,7 +568,7 @@ async def school_alumini_count_per_skill(keyword: str, schoolUrl: str, skillExpl
 
 # Tool: Company Employee
 @mcp.tool()
-async def company_employee(company_id: str, page: int = 1) -> Dict:
+def company_employee(company_id: str, page: int = 1) -> Dict:
     """Scrapes 12 people from a company (People Tab)
 
     NOTE: API doc specifies company_id and page as required GET parameters.
@@ -588,7 +588,7 @@ async def company_employee(company_id: str, page: int = 1) -> Dict:
 
 # Tool: Post Reactions
 @mcp.tool()
-async def post_reactions(reactions_urn: str, pagination_token: str = None) -> Dict:
+def post_reactions(reactions_urn: str, pagination_token: str = None) -> Dict:
     """Data of the people who reacted to a particular post
 
     NOTE: Obtain 'reactionsUrn' from 'Company Updates' or 'Profile Updates' endpoints.
@@ -609,7 +609,7 @@ async def post_reactions(reactions_urn: str, pagination_token: str = None) -> Di
 
 # Tool: Post Comments
 @mcp.tool()
-async def post_comments(comments_urn: str, pagination_token: str = None) -> Dict:
+def post_comments(comments_urn: str, pagination_token: str = None) -> Dict:
     """Scrapes all commenters data who commented below a post
 
     NOTE: Obtain 'commentsUrn' from 'Company Updates' or 'Profile Updates' endpoints.
@@ -630,7 +630,7 @@ async def post_comments(comments_urn: str, pagination_token: str = None) -> Dict
 
 # Tool: Post Reposts
 @mcp.tool()
-async def post_reposts(reposts_urn: str, pagination_token: str = None) -> Dict:
+def post_reposts(reposts_urn: str, pagination_token: str = None) -> Dict:
     """Scrapes all Reposters data who reposted a post
 
     NOTE: Obtain 'repostsUrn' from 'Company Updates' or 'Profile Updates' endpoints.
@@ -651,7 +651,7 @@ async def post_reposts(reposts_urn: str, pagination_token: str = None) -> Dict:
 
 # Tool: Search Posts With Filters
 @mcp.tool()
-async def search_posts_with_filters(query: str = None, sort_by: str = None, from_member: str = None, 
+def search_posts_with_filters(query: str = None, sort_by: str = None, from_member: str = None, 
                               from_organization: str = None, author_job_title: str = None,
                               author_company: str = None, content_type: str = None,
                               mentions_organization: str = None, author_industry: str = None,
@@ -708,7 +708,7 @@ async def search_posts_with_filters(query: str = None, sort_by: str = None, from
 
 # Tool: Search Jobs
 @mcp.tool()
-async def search_jobs(query: str, page: str = "1", searchLocationId: str = None, experience: str = None,
+def search_jobs(query: str, page: str = "1", searchLocationId: str = None, experience: str = None,
                postedAgo: str = None, locationIdsList: str = None, sortBy: str = None,
                titleIdsList: str = None, workplaceType: str = None, functionIdsList: str = None,
                industryIdsList: str = None, jobType: str = None, companyIdsList: str = None,
@@ -770,7 +770,7 @@ async def search_jobs(query: str, page: str = "1", searchLocationId: str = None,
 
 # Tool: Job Details
 @mcp.tool()
-async def job_details(job_id: str) -> Dict:
+def job_details(job_id: str) -> Dict:
     """Get detailed information about a specific job
     
     Get Request Parameters:
@@ -786,7 +786,7 @@ async def job_details(job_id: str) -> Dict:
 
 # Tool: Similar Profiles
 @mcp.tool()
-async def similar_profiles(profileUrl: str) -> Dict:
+def similar_profiles(profileUrl: str) -> Dict:
     """Returns similar profiles to a given linkedin profile url
     
     Get Request Parameters:
@@ -802,7 +802,7 @@ async def similar_profiles(profileUrl: str) -> Dict:
 
 # Tool: Suggestion Location
 @mcp.tool()
-async def suggestion_location(query: str) -> Dict:
+def suggestion_location(query: str) -> Dict:
     """Suggestions per query
     
     Get Request Parameters:
@@ -818,7 +818,7 @@ async def suggestion_location(query: str) -> Dict:
 
 # Tool: Suggestion Company
 @mcp.tool()
-async def suggestion_company(query: str) -> Dict:
+def suggestion_company(query: str) -> Dict:
     """Suggestions per query
     
     Get Request Parameters:
@@ -834,7 +834,7 @@ async def suggestion_company(query: str) -> Dict:
 
 # Tool: Suggestion School
 @mcp.tool()
-async def suggestion_school(query: str) -> Dict:
+def suggestion_school(query: str) -> Dict:
     """Suggestions per query
     
     Get Request Parameters:
@@ -850,7 +850,7 @@ async def suggestion_school(query: str) -> Dict:
 
 # Tool: Suggestion Industry
 @mcp.tool()
-async def suggestion_industry(query: str) -> Dict:
+def suggestion_industry(query: str) -> Dict:
     """Suggestions per query
     
     Get Request Parameters:
@@ -866,7 +866,7 @@ async def suggestion_industry(query: str) -> Dict:
 
 # Tool: Suggestion Service Category
 @mcp.tool()
-async def suggestion_service_catagory(query: str) -> Dict:
+def suggestion_service_catagory(query: str) -> Dict:
     """Suggestions as per query
     
     Get Request Parameters:
@@ -882,7 +882,7 @@ async def suggestion_service_catagory(query: str) -> Dict:
 
 # Tool: Suggestion Person
 @mcp.tool()
-async def suggestion_person(query: str) -> Dict:
+def suggestion_person(query: str) -> Dict:
     """Returns a list of people suggestion from linkedin.
     
     Get Request Parameters:
@@ -898,7 +898,7 @@ async def suggestion_person(query: str) -> Dict:
 
 # Tool: Search Geo URNs
 @mcp.tool()
-async def search_geourns(keyword: str) -> Dict:
+def search_geourns(keyword: str) -> Dict:
     """Suggestions per query
 
     NOTE: Failed during testing when keyword contained spaces (e.g., "New York"). Needs URL encoding or API fix.
@@ -916,7 +916,7 @@ async def search_geourns(keyword: str) -> Dict:
 
 # Tool: Suggestion Function
 @mcp.tool()
-async def suggestion_function(query: str = None) -> Dict:
+def suggestion_function(query: str = None) -> Dict:
     """Gets suggestions for Job Function
     
     Get Request Parameters:
@@ -934,7 +934,7 @@ async def suggestion_function(query: str = None) -> Dict:
 
 # Tool: Suggestion Company Size
 @mcp.tool()
-async def suggestion_company_size() -> Dict:
+def suggestion_company_size() -> Dict:
     """Suggestions for company size filter
     """
     try:
@@ -945,7 +945,7 @@ async def suggestion_company_size() -> Dict:
 
 # Tool: Suggestion Language
 @mcp.tool()
-async def suggestion_language() -> Dict:
+def suggestion_language() -> Dict:
     """Suggestions for language filter
     """
     try:
@@ -956,7 +956,7 @@ async def suggestion_language() -> Dict:
 
 # Tool: Private David
 @mcp.tool()
-async def profiles_david(links: List[str]) -> Dict:
+def profiles_david(links: List[str]) -> Dict:
     """Scrape 100 profiles in a single API call
 
     NOTE: Marked as private/premium in documentation.
@@ -978,7 +978,7 @@ async def profiles_david(links: List[str]) -> Dict:
 
 # Tool: Private Skander
 @mcp.tool()
-async def private_chtiouisk(links: List[str], count: int = 5) -> Dict:
+def private_chtiouisk(links: List[str], count: int = 5) -> Dict:
     """This is a private endpoint for our premium user
 
     NOTE: Marked as private/premium in documentation.
@@ -1001,7 +1001,7 @@ async def private_chtiouisk(links: List[str], count: int = 5) -> Dict:
 
 # Tool: Person Data With Open To Work Flag
 @mcp.tool()
-async def person_data_with_open_to_work_flag(link: str) -> Dict:
+def person_data_with_open_to_work_flag(link: str) -> Dict:
     """Scrapes person data with open to work flag
     
     Request Body Example:
@@ -1018,7 +1018,7 @@ async def person_data_with_open_to_work_flag(link: str) -> Dict:
 
 # Tool: Private Search Posts with Filters
 @mcp.tool()
-async def original_search_posts_with_filters(query: str = None, author_company: str = None, author_job_title: str = None, 
+def original_search_posts_with_filters(query: str = None, author_company: str = None, author_job_title: str = None, 
                                 author_industry: str = None, from_member: str = None, from_organization: str = None, 
                                 mentions_member: str = None, mentions_organization: str = None, content_type: str = None, 
                                 sort_by: str = None, page: str = None) -> Dict:
@@ -1078,7 +1078,7 @@ async def original_search_posts_with_filters(query: str = None, author_company: 
 
 # Tool: Private Company Insights 2
 @mcp.tool()
-async def private_company_insights_2(link: str) -> Dict:
+def private_company_insights_2(link: str) -> Dict:
     """Private endpoint to scrapes company insights
 
     NOTE: Marked as private/premium in documentation.
@@ -1096,7 +1096,7 @@ async def private_company_insights_2(link: str) -> Dict:
 
 # Tool: Post Reposts Original
 @mcp.tool()
-async def post_reposts_original(repostsUrn: str, page: str) -> Dict:
+def post_reposts_original(repostsUrn: str, page: str) -> Dict:
     """Private
 
     NOTE: Marked as private/premium in documentation.
@@ -1117,7 +1117,7 @@ async def post_reposts_original(repostsUrn: str, page: str) -> Dict:
 
 # Tool: Profile Updates Original
 @mcp.tool()
-async def profile_updates_original(profile_url: str, page: str) -> Dict:
+def profile_updates_original(profile_url: str, page: str) -> Dict:
     """Private
 
     NOTE: Marked as private/premium in documentation.
@@ -1138,7 +1138,7 @@ async def profile_updates_original(profile_url: str, page: str) -> Dict:
 
 # Tool: Company Updates Original
 @mcp.tool()
-async def company_updates_original(company_url: str, page: int) -> Dict:
+def company_updates_original(company_url: str, page: int) -> Dict:
     """Original data
 
     NOTE: Marked as private/premium in documentation.
@@ -1159,7 +1159,7 @@ async def company_updates_original(company_url: str, page: int) -> Dict:
 
 # Tool: All posts from a profile
 @mcp.tool()
-async def profile_posts_all(link: str) -> Dict:
+def profile_posts_all(link: str) -> Dict:
     """This endpoint scrapes all posts posted by a user at linkedin.com since joined.
 
     NOTE: Marked as private/premium in documentation.
@@ -1178,7 +1178,7 @@ async def profile_posts_all(link: str) -> Dict:
 
 # Tool: Person Data With All Experiences
 @mcp.tool()
-async def person_data_with_experiences(link: str) -> Dict:
+def person_data_with_experiences(link: str) -> Dict:
     """Scrapes all linkedin profile data alongwith all the experiences.
     
     Request Body Example:
@@ -1195,7 +1195,7 @@ async def person_data_with_experiences(link: str) -> Dict:
 
 # Tool: Person Data With All Languages
 @mcp.tool()
-async def person_data_with_languages(link: str) -> Dict:
+def person_data_with_languages(link: str) -> Dict:
     """Scrapers person data with all languages data
     
     Request Body Example:
@@ -1212,7 +1212,7 @@ async def person_data_with_languages(link: str) -> Dict:
 
 # Tool: Person Data With All Educations
 @mcp.tool()
-async def person_data_with_educations(link: str) -> Dict:
+def person_data_with_educations(link: str) -> Dict:
     """Scrapers person data along with all the educations data.
     
     Request Body Example:
