@@ -7,8 +7,6 @@ import urllib.parse
 import logging
 import traceback
 import time
-# from fastapi import FastAPI
-# import contextlib
 from starlette.responses import JSONResponse
 
 # Configure logging
@@ -169,10 +167,10 @@ LINKEDIN_HEADERS = {
     "x-rapidapi-user": LINKEDIN_API_USER
 }
 
-# health probe so Azure stops 404-polling "/"
 @app.route("/", methods=["GET"])
 async def alive(request):
     return JSONResponse({"status": "ok"})
+
 # LinkedIn API Tools based on api_doc.md
 
 # Tool: Get Profiles
