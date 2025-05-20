@@ -4,6 +4,5 @@ version = "0.1.0"
 requires-python = ">=3.12.3"
 
 dependencies = [
-    "fastmcp>=2.3.4",     # ← real server library (gives you FastMCP.method)
-    "requests>=2.31.0",
+    "fastmcp>=2.3.4",
 ]
