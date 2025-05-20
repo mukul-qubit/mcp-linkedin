@@ -19,7 +19,7 @@ logging.basicConfig(
 logger = logging.getLogger('linkedin_api_tools')
 
 # Create MCP server
-mcp = FastMCP("LinkedInProfiler")
+mcp = FastMCP("LinkedInProfiler", stateless_http=True)
 
 app = mcp.http_app(path="/linkedin")
 
@@ -169,6 +169,10 @@ LINKEDIN_HEADERS = {
     "x-rapidapi-user": LINKEDIN_API_USER
 }
 
+# health probe so Azure stops 404-polling "/"
+@app.route("/", methods=["GET"])
+async def alive(request):
+    return JSONResponse({"status": "ok"})
 # LinkedIn API Tools based on api_doc.md
 
 # Tool: Get Profiles
