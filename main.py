@@ -7,8 +7,9 @@ import urllib.parse
 import logging
 import traceback
 import time
-from fastapi import FastAPI
-import contextlib
+# from fastapi import FastAPI
+# import contextlib
+# from starlette.responses import JSONResponse
 
 # Configure logging
 logging.basicConfig(
@@ -21,19 +22,6 @@ logger = logging.getLogger('linkedin_api_tools')
 mcp = FastMCP("LinkedInProfiler")
 
 mcp_app = mcp.http_app(path="/linkedin")
-
-# --- custom lifespan that starts FastMCP’s SessionManager ---
-@contextlib.asynccontextmanager
-async def lifespan(app: FastAPI):
-    async with mcp.session_manager.run():   # starts the TaskGroup
-        yield            
-
-app = FastAPI(lifespan=lifespan)   # <-- critical!
-app.mount("/linkedin", mcp_app)
-
-@app.get("/")
-async def alive():
-    return {"status": "ok"}
 
 # Get LinkedIn API credentials from environment variables
 LINKEDIN_API_KEY = os.environ.get("LINKEDIN_API_KEY", "xxxx")
