@@ -8,6 +8,7 @@ import logging
 import traceback
 import time
 from fastapi import FastAPI
+import contextlib
 
 # Configure logging
 logging.basicConfig(
@@ -21,7 +22,13 @@ mcp = FastMCP("LinkedInProfiler")
 
 mcp_app = mcp.http_app(path="/linkedin")
 
-app = FastAPI(lifespan=mcp_app.lifespan)   # <-- critical!
+# --- custom lifespan that starts FastMCP’s SessionManager ---
+@contextlib.asynccontextmanager
+async def lifespan(app: FastAPI):
+    async with mcp.session_manager.run():   # starts the TaskGroup
+        yield            
+
+app = FastAPI(lifespan=lifespan)   # <-- critical!
 app.mount("/linkedin", mcp_app)
 
 @app.get("/")
